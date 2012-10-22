@@ -4,3 +4,6 @@
 [submodule "bbb/root"]
 	path = bbb/root
 	url = https://github.com/tbranyen/backbone-boilerplate.git
+[submodule "spotify/root"]
+	path = spotify/root
+	url = https://github.com/toastjs/toast-spotify.git
