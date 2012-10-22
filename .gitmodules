@@ -1,0 +1,3 @@
+[submodule "cakephp/root"]
+	path = cakephp/root
+	url = https://github.com/toastjs/toast-cakephp.git
