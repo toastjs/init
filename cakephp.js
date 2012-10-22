@@ -24,14 +24,14 @@ exports.template = function(grunt, init, done) {
 
   _.extend(grunt.helper("prompt_for_obj"), {
     name: {
-      message: "Module Name",
+      message: "Project Name",
       // validator: /^[\w\-\.]+$/
     }
   });
 
   grunt.helper("prompt", {}, [
 
-    // Get the name of the module.
+    // Get the name of the project.
     grunt.helper("prompt_for", "name")
 
   ], function(err, props) {
@@ -51,11 +51,10 @@ exports.template = function(grunt, init, done) {
     // props.name = props.name.toLowerCase();
 
     // Set the module name to be the title case.
-    props.module_name = props.name; //[0].toUpperCase() + props.name.slice(1);
+    props.project_name = props.name; //[0].toUpperCase() + props.name.slice(1);
     
     props.security_salt = _randomString(40);
     props.security_seed = _randomString(30, '0123456789');
-
 
     // Actually copy (and process) files.
     init.copyAndProcess(files, props, {
@@ -96,14 +95,6 @@ exports.template = function(grunt, init, done) {
     });
 
     exec("lessc app/webroot/less/bootstrap/bootstrap.less app/webroot/css/bootstrap.css");
-    
-    // passthru('./cake Oven.init',
-    //   function(error, stdout, stderr) {
-    //     grunt.log.writeln(stdout);
-    //     // All done!
-    //     done();
-    //   }
-    // );
 
 });
 
