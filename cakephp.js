@@ -3,8 +3,8 @@ var exec = require('child_process').exec,
   child;
 var passthru = require('passthru');
 
-exports.description = "Blah: a cool blah module";
-exports.notes = "Generates a new module";
+exports.description = "CakePHP: A fresh CakePHP 2 install with best practices.";
+exports.notes = "Sets up a fresh CakePHP 2 install with best practices";
 
 // exports.warnOn = "*";
 
