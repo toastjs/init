@@ -1,3 +1,6 @@
 [submodule "cakephp/root"]
 	path = cakephp/root
 	url = https://github.com/toastjs/toast-cakephp.git
+[submodule "bbb/root"]
+	path = bbb/root
+	url = https://github.com/tbranyen/backbone-boilerplate.git
