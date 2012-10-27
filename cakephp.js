@@ -58,7 +58,7 @@ exports.template = function(grunt, init, done) {
 
     // Actually copy (and process) files.
     init.copyAndProcess(files, props, {
-      noProcess: [ "lib/**", "favicon.ico" ]
+      noProcess: [ "lib/**", "favicon.ico", "app/composer.phar" ]
     });
 
     fs.chmodSync('cake', '777');
@@ -78,7 +78,7 @@ exports.template = function(grunt, init, done) {
       ignore_stream.write("");
     });
 
-    exec("git init && git add . && git commit -m 'Intitial commit'");
+    // passthru('git init && git add . && git commit -m "Intitial commit"');
 
     var stream = fs.createWriteStream("app/Config/Environment/local.php");
     stream.once('open', function(fd) {
@@ -94,8 +94,12 @@ exports.template = function(grunt, init, done) {
       stream.write(");\n");
     });
 
-    exec("lessc app/webroot/less/bootstrap/bootstrap.less app/webroot/css/bootstrap.css");
-
+    passthru("php app/composer.phar install --working-dir app", function() {
+      passthru("lessc app/webroot/less/bootstrap/bootstrap.less app/webroot/css/bootstrap.css", function() {
+        done();
+      });
+    });
+    
 });
 
 };
