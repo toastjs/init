@@ -83,23 +83,23 @@ exports.template = function(grunt, init, done) {
 
         exec("git init && git add . && git commit -m 'Intitial commit'");
 
-        var stream = fs.createWriteStream("app/Config/Environment/local.php");
-        stream.once('open', function(fd) {
-          stream.write("<?php\n");
-          stream.write("\n");
-          stream.write("$config['debug'] = 2;\n");
-          stream.write("\n");
-          stream.write("$config['App.database'] = array(\n");
-          stream.write("'host'       => 'localhost',\n");
-          stream.write("'login'      => '',\n");
-          stream.write("'password'   => '',\n");
-          stream.write("'database'   => '',\n");
-          stream.write(");\n");
+        fileData = "<?php\n";
+        fileData += "\n";
+        fileData += "$config['debug'] = 2;\n";
+        fileData += "\n";
+        fileData += "$config['App.database'] = array(\n";
+        fileData += "\t'host'       => 'localhost',\n";
+        fileData += "\t'login'      => '',\n";
+        fileData += "\t'password'   => '',\n";
+        fileData += "\t'database'   => '',\n";
+        fileData += ");\n";
+        
+        fs.writeFile("app/Config/Environment/local.php", fileData, function() {
+          done();
         });
 
-        done();
-
       });
+      
     });
     
 });
