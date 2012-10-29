@@ -6,7 +6,7 @@ var passthru = require('passthru');
 exports.description = "CakePHP: A fresh CakePHP 2 install with best practices.";
 exports.notes = "Sets up a fresh CakePHP 2 install with best practices";
 
-// exports.warnOn = "*";
+exports.warnOn = "*";
 
 function _randomString(len, charSet) {
     charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
