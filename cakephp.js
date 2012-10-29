@@ -78,25 +78,27 @@ exports.template = function(grunt, init, done) {
       ignore_stream.write("");
     });
 
-    // passthru('git init && git add . && git commit -m "Intitial commit"');
-
-    var stream = fs.createWriteStream("app/Config/Environment/local.php");
-    stream.once('open', function(fd) {
-      stream.write("<?php\n");
-      stream.write("\n");
-      stream.write("$config['debug'] = 2;\n");
-      stream.write("\n");
-      stream.write("$config['App.database'] = array(\n");
-      stream.write("'host'       => 'localhost',\n");
-      stream.write("'login'      => '',\n");
-      stream.write("'password'   => '',\n");
-      stream.write("'database'   => '',\n");
-      stream.write(");\n");
-    });
-
     passthru("php app/composer.phar install --working-dir app", function() {
       passthru("lessc app/webroot/less/bootstrap/bootstrap.less app/webroot/css/bootstrap.css", function() {
+
+        exec("git init && git add . && git commit -m 'Intitial commit'");
+
+        var stream = fs.createWriteStream("app/Config/Environment/local.php");
+        stream.once('open', function(fd) {
+          stream.write("<?php\n");
+          stream.write("\n");
+          stream.write("$config['debug'] = 2;\n");
+          stream.write("\n");
+          stream.write("$config['App.database'] = array(\n");
+          stream.write("'host'       => 'localhost',\n");
+          stream.write("'login'      => '',\n");
+          stream.write("'password'   => '',\n");
+          stream.write("'database'   => '',\n");
+          stream.write(");\n");
+        });
+
         done();
+
       });
     });
     
